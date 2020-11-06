@@ -1,7 +1,7 @@
 #!/bin/bash
 # Run with sudo is necessary!
 
-sda=$(udevadm info /dev/sdb --query=symlink --root | tr " " "\n" | grep "^/dev/disk/by-id/ata")
+sda=$(udevadm info /dev/sda --query=symlink --root | tr " " "\n" | grep "^/dev/disk/by-id/ata")
 sda3="${sda}-part3"
 sda4="${sda}-part4"
 sda5="${sda}-part5"
@@ -19,7 +19,7 @@ if [[ $1 -eq 1 ]]; then
     3
     p
     w
-    del_param
+del_param
 
     lsblk
     exit
@@ -35,7 +35,7 @@ if [[ $1 -eq 2 ]]; then
     ''
     +300M
     w
-    1_param
+1_param
 
     # 2
 
@@ -158,4 +158,3 @@ then
 else
     echo "//192.168.1.1/shared /mnt/share cifs user=donaldo,password=mamba123 0 0" >> /etc/fstab
 fi
-
