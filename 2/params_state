@@ -1,0 +1,53 @@
+Filesystem volume name:   <none>
+Last mounted on:          /mnt/newdisk
+Filesystem UUID:          0f070224-91db-4bd1-b7ed-18f47b9e6d68
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              76800
+Block count:              76800
+Reserved block count:     3840
+Free blocks:              70211
+Free inodes:              76787
+First block:              0
+Block size:               4096
+Fragment size:            4096
+Group descriptor size:    64
+Reserved GDT blocks:      37
+Blocks per group:         32768
+Fragments per group:      32768
+Inodes per group:         25600
+Inode blocks per group:   800
+Flex block group size:    16
+Filesystem created:       Fri Nov  6 19:03:15 2020
+Last mount time:          Sat Nov  7 01:49:51 2020
+Last write time:          Sat Nov  7 01:49:51 2020
+Mount count:              3
+Maximum mount count:      2
+Last checked:             Fri Nov  6 19:03:15 2020
+Check interval:           5184000 (2 months)
+Next check after:         Tue Jan  5 19:03:15 2021
+Lifetime writes:          10 MB
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          128
+Journal inode:            8
+Default directory hash:   half_md4
+Directory Hash Seed:      4afb5a07-3960-4297-adeb-469bf3d5c119
+Journal backup:           inode blocks
+Checksum type:            crc32c
+Checksum:                 0xae8b51bc
+Journal features:         journal_64bit journal_checksum_v3
+Journal size:             16M
+Journal length:           4096
+Journal sequence:         0x00000007
+Journal start:            0
+Journal checksum type:    crc32c
+Journal checksum:         0x74d1e756
+

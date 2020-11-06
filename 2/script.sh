@@ -2,6 +2,10 @@
 # Run with sudo is necessary!
 
 if [[ $1 -eq 1 ]]; then
+    echo "Trying to unmount if mounted..."
+
+    umount /dev/sda3
+
     echo "Removing third partition /dev/sda3..."
 
     echo d > del_param
@@ -93,6 +97,20 @@ read
 
 # 10
 echo "doing 10..."
+
+umount /dev/sda3
+
+echo d > 10_param
+echo 3 >> 10_param
+
+echo n >> 10_param
+echo p >> 10_param
+echo 3 >> 10_param
+echo >> 10_param
+echo +350M >> 10_param
+echo w >> 10_param
+
+fdisk /dev/sda < 10_param
 
 # 11
 echo "doing 11..."
