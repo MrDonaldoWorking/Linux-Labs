@@ -30,10 +30,10 @@ read
 # 2
 echo "doing 2..."
 
-blkid /dev/sda3 -o value -s UUID > /root/sda3_UUID
-echo "\"blkid /dev/sda3 -o value\" result is:"
-blkid /dev/sda3 -o value
-echo
+#blkid /dev/sda3 -o value -s UUID > /root/sda3_UUID
+#echo "\"blkid /dev/sda3 -o value\" result is:"
+blkid /dev/sda3 -o value > /root/sda3_UUID
+#echo
 echo "Written to file:"
 cat /root/sda3_UUID
 read
