@@ -112,11 +112,18 @@ echo w >> 10_param
 
 fdisk /dev/sda < 10_param
 
+e2fsck -f /dev/sda3
+resize2fs /dev/sda3
+
 # 11
 echo "doing 11..."
 
+e2fsck -n /dev/sda3
+
 # 12
 echo "doing 12..."
+
+
 
 # 13
 echo "doing 13..."
