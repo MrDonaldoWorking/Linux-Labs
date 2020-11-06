@@ -18,6 +18,7 @@ if [[ $1 -eq 1 ]]; then
     exit
 fi
 
+if [[ $1 -eq 0 ]]; then
 # 1
 echo "doing 1..."
 
@@ -87,6 +88,8 @@ echo "doing 9..."
 
 echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
 # reboot
+exit
+fi
 
 echo "#!/bin/bash" > /mnt/newdisk/script
 echo "echo \"Hello, World!\"" >> /mnt/newdisk/script
