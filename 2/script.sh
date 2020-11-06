@@ -1,0 +1,93 @@
+#!/bin/bash
+# Run with sudo is necessary!
+
+# 1
+echo "doing 1..."
+
+echo n > 1_param
+echo p >> 1_param
+echo 3 >> 1_param
+echo >> 1_param
+echo +300M >> 1_param
+echo w >> 1_param
+
+fdisk /dev/sda < 1_param
+read
+
+# 2
+echo "doing 2..."
+
+blkid /dev/sda3 -o value > /root/sda3_UUID
+cat /root/sda3_UUID
+read
+
+# 3
+echo "doing 3..."
+
+mkfs.ext4 -b 4096 /dev/sda3
+read
+
+# 4
+echo "doing 4..."
+
+dumpe2fs -h /dev/sda3
+read
+
+# 5
+echo "doing 5..."
+
+tune2fs -c 2 -i 2m /dev/sda3
+read
+
+# 6
+echo "doing 6..."
+
+mkdir /mnt/newdisk
+mount /dev/sda3 /mnt/newdisk
+read
+
+# 7
+echo "doing 7..."
+
+ln -s /mnt/newdisk /root/newdisk
+read
+
+# 8
+echo "doing 8..."
+
+mkdir /mnt/newdisk/donaldo
+read
+
+# 9
+echo "doing 9..."
+
+echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
+# reboot
+
+echo "#!/bin/bash" > /mnt/newdisk/script
+echo "echo \"Hello, World!\"" >> /mnt/newdisk/script
+chmod ugo+x /mnt/newdisk/script
+/mnt/newdusk/script
+read
+
+# 10
+echo "doing 10..."
+
+# 11
+echo "doing 11..."
+
+# 12
+echo "doing 12..."
+
+# 13
+echo "doing 13..."
+
+# 14
+echo "doing 14..."
+
+# 15
+echo "doing 15..."
+
+# 16
+echo "doing 16..."
+
