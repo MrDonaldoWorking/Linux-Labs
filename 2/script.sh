@@ -1,6 +1,19 @@
 #!/bin/bash
 # Run with sudo is necessary!
 
+if [[ $1 -eq 1 ]]; then
+    echo "Removing third partition /dev/sda3..."
+
+    echo d > del_param
+    echo 3 >> del_param
+    echo p >> del_param
+    echo w >> del_param
+
+    fdisk /dev/sda < del_param
+    lsblk
+    exit
+fi
+
 # 1
 echo "doing 1..."
 
@@ -17,7 +30,7 @@ read
 # 2
 echo "doing 2..."
 
-blkid /dev/sda3 -o value > /root/sda3_UUID
+blkid /dev/sda3 -o value -s UUID > /root/sda3_UUID
 cat /root/sda3_UUID
 read
 
@@ -30,7 +43,8 @@ read
 # 4
 echo "doing 4..."
 
-dumpe2fs -h /dev/sda3
+dumpe2fs -h /dev/sda3 > params_state
+cat params_state
 read
 
 # 5
@@ -50,12 +64,14 @@ read
 echo "doing 7..."
 
 ln -s /mnt/newdisk /root/newdisk
+ls -l /mnt/newdisk
 read
 
 # 8
 echo "doing 8..."
 
 mkdir /mnt/newdisk/donaldo
+ls -l /mnt/newdisk
 read
 
 # 9
@@ -67,6 +83,7 @@ echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
 echo "#!/bin/bash" > /mnt/newdisk/script
 echo "echo \"Hello, World!\"" >> /mnt/newdisk/script
 chmod ugo+x /mnt/newdisk/script
+ls -l /mnt/newdisk
 /mnt/newdusk/script
 read
 
