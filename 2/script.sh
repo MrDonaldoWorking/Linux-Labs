@@ -19,76 +19,76 @@ if [[ $1 -eq 1 ]]; then
 fi
 
 if [[ $1 -eq 0 ]]; then
-# 1
-echo "doing 1..."
+    # 1
+    echo "doing 1..."
 
-echo n > 1_param
-echo p >> 1_param
-echo 3 >> 1_param
-echo >> 1_param
-echo +300M >> 1_param
-echo w >> 1_param
+    echo n > 1_param
+    echo p >> 1_param
+    echo 3 >> 1_param
+    echo >> 1_param
+    echo +300M >> 1_param
+    echo w >> 1_param
 
-fdisk /dev/sda < 1_param
-read
+    fdisk /dev/sda < 1_param
+    read
 
-# 2
-echo "doing 2..."
+    # 2
+    echo "doing 2..."
 
-#blkid /dev/sda3 -o value -s UUID > /root/sda3_UUID
-#echo "\"blkid /dev/sda3 -o value\" result is:"
-blkid /dev/sda3 -o value > /root/sda3_UUID
-#echo
-echo "Written to file:"
-cat /root/sda3_UUID
-read
+    #blkid /dev/sda3 -o value -s UUID > /root/sda3_UUID
+    #echo "\"blkid /dev/sda3 -o value\" result is:"
+    blkid /dev/sda3 -o value > /root/sda3_UUID
+    #echo
+    echo "Written to file:"
+    cat /root/sda3_UUID
+    read
 
-# 3
-echo "doing 3..."
+    # 3
+    echo "doing 3..."
 
-mkfs.ext4 -b 4096 /dev/sda3
-read
+    mkfs.ext4 -b 4096 /dev/sda3
+    read
 
-# 4
-echo "doing 4..."
+    # 4
+    echo "doing 4..."
 
-dumpe2fs -h /dev/sda3 > params_state
-cat params_state
-read
+    dumpe2fs -h /dev/sda3 > params_state
+    cat params_state
+    read
 
-# 5
-echo "doing 5..."
+    # 5
+    echo "doing 5..."
 
-tune2fs -c 2 -i 2m /dev/sda3
-read
+    tune2fs -c 2 -i 2m /dev/sda3
+    read
 
-# 6
-echo "doing 6..."
+    # 6
+    echo "doing 6..."
 
-mkdir /mnt/newdisk
-mount /dev/sda3 /mnt/newdisk
-read
+    mkdir /mnt/newdisk
+    mount /dev/sda3 /mnt/newdisk
+    read
 
-# 7
-echo "doing 7..."
+    # 7
+    echo "doing 7..."
 
-ln -s /mnt/newdisk /root/newdisk
-ls -l /root
-read
+    ln -s /mnt/newdisk /root/newdisk
+    ls -l /root
+    read
 
-# 8
-echo "doing 8..."
+    # 8
+    echo "doing 8..."
 
-mkdir /mnt/newdisk/donaldo
-ls -l /mnt/newdisk
-read
+    mkdir /mnt/newdisk/donaldo
+    ls -l /mnt/newdisk
+    read
 
-# 9
-echo "doing 9..."
+    # 9
+    echo "doing 9..."
 
-echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
-# reboot
-exit
+    echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
+    # reboot
+    exit
 fi
 
 echo "#!/bin/bash" > /mnt/newdisk/script
