@@ -18,7 +18,7 @@ if [[ $1 -eq 1 ]]; then
     exit
 fi
 
-if [[ $1 -eq 0 ]]; then
+if [[ $1 -eq 2 ]]; then
     # 1
     echo "doing 1..."
 
@@ -126,16 +126,43 @@ e2fsck -n /dev/sda3
 # 12
 echo "doing 12..."
 
+echo n > 12_param
+echo >> 12_param
+echo >> 12_param
+echo +12M >> 12_param
+echo w >> 12_param
 
+fdisk /dev/sda < 12_param
+
+mkfs.ext4 /dev/sda4
+tune2fs -J location=/dev/sda4 /dev/sda3
 
 # 13
 echo "doing 13..."
 
+echo n > 13_param
+echo >> 13_param
+echo >> 13_param
+echo +100M >> 13_param
+echo $(cat 13_param) >> 13_param
+echo w >> 13_param
+
+fdisk /dev/sda < 13_param
+
 # 14
 echo "doing 14..."
 
+vgcreate LVM /dev/sda5 /dev/sda6
+lvcreate -l 100%FREE -n LVM LVM
+
+mkdir /mnt/supernewdisk
+mkfs.ext4 /dev/LVM/LVM
+mount /dev/LVM/LVM /mnt/supernewdisk
+
 # 15
 echo "doing 15..."
+
+
 
 # 16
 echo "doing 16..."

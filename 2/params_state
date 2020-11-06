@@ -1,6 +1,6 @@
 Filesystem volume name:   <none>
-Last mounted on:          /mnt/newdisk
-Filesystem UUID:          6b35061f-061d-4b34-a686-d5e61380e9f7
+Last mounted on:          <not available>
+Filesystem UUID:          d1107445-462f-4f06-9501-cb8b5c693a9f
 Filesystem magic number:  0xEF53
 Filesystem revision #:    1 (dynamic)
 Filesystem features:      has_journal ext_attr resize_inode dir_index filetype extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
@@ -12,8 +12,8 @@ Filesystem OS type:       Linux
 Inode count:              76800
 Block count:              76800
 Reserved block count:     3840
-Free blocks:              70211
-Free inodes:              76787
+Free blocks:              70214
+Free inodes:              76789
 First block:              0
 Block size:               4096
 Fragment size:            4096
@@ -24,30 +24,27 @@ Fragments per group:      32768
 Inodes per group:         25600
 Inode blocks per group:   800
 Flex block group size:    16
-Filesystem created:       Fri Nov  6 19:03:51 2020
-Last mount time:          Fri Nov  6 19:03:57 2020
-Last write time:          Fri Nov  6 19:04:39 2020
-Mount count:              1
-Maximum mount count:      2
-Last checked:             Fri Nov  6 19:03:51 2020
-Check interval:           5184000 (2 months)
-Next check after:         Tue Jan  5 19:03:51 2021
-Lifetime writes:          10 MB
+Filesystem created:       Fri Nov  6 19:03:42 2020
+Last mount time:          n/a
+Last write time:          Fri Nov  6 19:03:42 2020
+Mount count:              0
+Maximum mount count:      -1
+Last checked:             Fri Nov  6 19:03:42 2020
+Check interval:           0 (<none>)
+Lifetime writes:          173 kB
 Reserved blocks uid:      0 (user root)
 Reserved blocks gid:      0 (group root)
 First inode:              11
 Inode size:	          128
 Journal inode:            8
 Default directory hash:   half_md4
-Directory Hash Seed:      c23eb1d9-15b9-42ff-9c81-8838d1ece67e
+Directory Hash Seed:      880edf65-d37f-4256-a49b-140ddf9514ce
 Journal backup:           inode blocks
 Checksum type:            crc32c
-Checksum:                 0xb99189ae
-Journal features:         journal_64bit journal_checksum_v3
+Checksum:                 0x5c4cb534
+Journal features:         (none)
 Journal size:             16M
 Journal length:           4096
-Journal sequence:         0x00000007
+Journal sequence:         0x00000001
 Journal start:            0
-Journal checksum type:    crc32c
-Journal checksum:         0x8a4fa74e
 
