@@ -1,14 +1,20 @@
 #!/bin/bash
 # Run with sudo is necessary!
 
+sda=$(udevadm info /dev/sdb --query=symlink --root | tr " " "\n" | grep "^/dev/disk/by-id/ata")
+sda3="${sda}-part3"
+sda4="${sda}-part4"
+sda5="${sda}-part5"
+sda6="${sda}-part6"
+
 if [[ $1 -eq 1 ]]; then
     echo "Trying to unmount if mounted..."
 
-    umount /dev/sda3
+    umount $sda3
 
     echo "Removing third partition /dev/sda3..."
 
-    fdisk /dev/sda << del_param
+    fdisk $sda << del_param
     d
     3
     p
@@ -22,7 +28,7 @@ fi
 if [[ $1 -eq 2 ]]; then
     # 1
 
-    fdisk /dev/sda << 1_param
+    fdisk $sda << 1_param
     n
     p
     3
@@ -33,24 +39,24 @@ if [[ $1 -eq 2 ]]; then
 
     # 2
 
-    blkid /dev/sda3 -o value > /root/sda3_UUID
+    blkid $sda3 -o value > /root/sda3_UUID
 
     # 3
 
-    mkfs.ext4 -b 4096 /dev/sda3
+    mkfs.ext4 -b 4096 $sda3
 
     # 4
 
-    dumpe2fs -h /dev/sda3
+    dumpe2fs -h $sda3
 
     # 5
 
-    tune2fs -c 2 -i 2m /dev/sda3
+    tune2fs -c 2 -i 2m $sda3
 
     # 6
 
     mkdir /mnt/newdisk
-    mount /dev/sda3 /mnt/newdisk
+    mount $sda3 /mnt/newdisk
 
     # 7
 
@@ -64,11 +70,11 @@ if [[ $1 -eq 2 ]]; then
 
     # 9
 
-    if cat /etc/fstab | grep "^/dev/sda3"
+    if cat /etc/fstab | grep "^$sda3"
     then
         echo "Already there"
     else
-        echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
+        echo "$sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
     fi
     # reboot
     exit
@@ -83,10 +89,9 @@ ls -l /mnt/newdisk
 # 10
 echo "doing 10..."
 
-umount /dev/sda3
+umount $sda3
 
-
-fdisk /dev/sda << 10_param
+fdisk $sda << 10_param
 d
 3
 n
@@ -97,16 +102,16 @@ p
 w
 10_param
 
-e2fsck -f /dev/sda3
-resize2fs /dev/sda3
+e2fsck -f $sda3
+resize2fs $sda3
 
 # 11
 
-e2fsck -n /dev/sda3
+e2fsck -n $sda3
 
 # 12
 
-fdisk /dev/sda << 12_param
+fdisk $sda << 12_param
 n
 ''
 ''
@@ -114,12 +119,12 @@ n
 w
 12_param
 
-mkfs.ext4 /dev/sda4
-tune2fs -J location=/dev/sda4 /dev/sda3
+mkfs.ext4 $sda4
+tune2fs -J location=/dev/sda4 $sda3
 
 # 13
 
-fdisk /dev/sda << 13_param
+fdisk $sda << 13_param
 n
 ''
 ''
@@ -133,7 +138,7 @@ w
 
 # 14
 
-vgcreate LVM /dev/sda5 /dev/sda6
+vgcreate LVM $sda5 $sda6
 lvcreate -l 100%FREE -n LVM LVM
 
 mkdir /mnt/supernewdisk
