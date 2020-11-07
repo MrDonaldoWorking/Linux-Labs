@@ -162,8 +162,11 @@ mount /dev/LVM/LVM /mnt/supernewdisk
 # 15
 echo "doing 15..."
 
-
+mkdir /mnt/share
+mount.cifs //192.168.1.1/shared /mnt/share -o username=donaldo,password=mamba123
 
 # 16
 echo "doing 16..."
+
+echo "//192.168.1.1/shared /mnt/share cifs user=donaldo,password=mamba123 0 0" >> /etc/fstab
 
