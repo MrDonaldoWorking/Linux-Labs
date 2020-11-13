@@ -6,78 +6,60 @@ sda3="${sda}-part3"
 sda4="${sda}-part4"
 sda5="${sda}-part5"
 sda6="${sda}-part6"
+empty=''
 
-if [[ $1 -eq 1 ]]; then
-    echo "Trying to unmount if mounted..."
+# 1
 
-    umount $sda3
-
-    echo "Removing third partition /dev/sda3..."
-
-    fdisk $sda << del_param
-    d
-    3
-    p
-    w
-del_param
-
-    lsblk
-    exit
-fi
-
-if [[ $1 -eq 2 ]]; then
-    # 1
-
-    fdisk $sda << 1_param
-    n
-    p
-    3
-    ''
-    +300M
-    w
+fdisk $sda << 1_param
+n
+p
+3
+$empty
++300M
+w
 1_param
 
-    # 2
+# 2
 
-    blkid $sda3 -o value > /root/sda3_UUID
+blkid $sda3 -o value > /root/sda3_UUID
 
-    # 3
+# 3
 
-    mkfs.ext4 -b 4096 $sda3
+mkfs.ext4 -b 4096 $sda3
 
-    # 4
+# 4
 
-    dumpe2fs -h $sda3
+dumpe2fs -h $sda3
 
-    # 5
+# 5
 
-    tune2fs -c 2 -i 2m $sda3
+tune2fs -c 2 -i 2m $sda3
 
-    # 6
+# 6
 
-    mkdir /mnt/newdisk
-    mount $sda3 /mnt/newdisk
+mkdir /mnt/newdisk
+mount $sda3 /mnt/newdisk
 
-    # 7
+# 7
 
-    ln -s /mnt/newdisk /root/newdisk
-    ls -l /root
+ln -s /mnt/newdisk /root/newdisk
+ls -l /root
 
-    # 8
+# 8
 
-    mkdir /mnt/newdisk/donaldo
-    ls -l /mnt/newdisk
+mkdir /mnt/newdisk/donaldo
+ls -l /mnt/newdisk
 
-    # 9
+# 9
 
-    if cat /etc/fstab | grep "^$sda3"
-    then
-        echo "Already there"
-    else
-        echo "$sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
-    fi
-    # reboot
-    exit
+if cat /etc/fstab | grep "^$sda3"
+then
+    echo "Already there"
+else
+    echo "$sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
+fi
+# reboot
+exit
 fi
 
 echo "#!/bin/bash" > /mnt/newdisk/script
@@ -97,7 +79,7 @@ d
 n
 p
 3
-''
+$empty
 +350M
 w
 10_param
@@ -113,8 +95,8 @@ e2fsck -n $sda3
 
 fdisk $sda << 12_param
 n
-''
-''
+$empty
+$empty
 +12M
 w
 12_param
@@ -126,12 +108,12 @@ tune2fs -J location=/dev/sda4 $sda3
 
 fdisk $sda << 13_param
 n
-''
-''
+$empty
+$empty
 +100M
 n
-''
-''
+$empty
+$empty
 +100M
 w
 13_param
