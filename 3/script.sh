@@ -21,7 +21,8 @@ echo Be careful > /etc/skel/readme.txt
 
 #5
 
-useradd u1 -p $(openssl passwd -crypt 12345678)
+# 12345678
+useradd u1 -p $(openssl passwd -crypt < /dev/stdin)
 
 #6
 
@@ -49,7 +50,8 @@ usermod --shell /usr/bin/mc u1
 
 #12
 
-useradd u2 -p $(openssl passwd -crypt 87654321)
+# 87654321
+useradd u2 -p $(openssl passwd -crypt < /dev/stdin)
 
 #13
 
