@@ -52,15 +52,13 @@ ls -l /mnt/newdisk
 
 # 9
 
-if cat /etc/fstab | grep "^$sda3"
+if cat /etc/fstab | grep "^/dev/sda3"
 then
     echo "Already there"
 else
-    echo "$sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
+    echo "/dev/sda3 /mnt/newdisk ext4 noexec,noatime 0 0" >> /etc/fstab
 fi
 # reboot
-exit
-fi
 
 echo "#!/bin/bash" > /mnt/newdisk/script
 echo "echo \"Hello, World!\"" >> /mnt/newdisk/script
