@@ -1,0 +1,9 @@
+--- bastet/Makefile	2020-12-27 16:39:34.766376488 +0300
++++ makefile.txt	2020-12-27 16:41:20.457378533 +0300
+@@ -21,3 +21,6 @@
+ 
+ mrproper: clean
+ 	rm -f *~
++
++install:
++	install /root/bastet/bastet /usr/bin

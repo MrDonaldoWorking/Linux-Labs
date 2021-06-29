@@ -1,0 +1,11 @@
+--- /root/rpmbuild/SPECS/nano.spec	2020-12-27 16:49:49.585257030 +0300
++++ /root/newnano.txt	2020-12-27 16:56:42.528465043 +0300
+@@ -53,6 +53,8 @@
+ mkdir -p %{buildroot}%{_sysconfdir}
+ install -m 0644 ./nanorc %{buildroot}%{_sysconfdir}/nanorc
+ 
++cp %{buildroot}%{_bindir}/nano %{buildroot}%{_bindir}/newnano
++
+ %find_lang %{name}
+ 
+ %post
